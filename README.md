@@ -1,42 +1,40 @@
-# TWRP Device Tree for Samsung Galaxy A52s 5G
+# TWRP Device Tree for Samsung Galaxy S21 FE 5G
 
-The Galaxy A52s 5G (codenamed _"a52sxq"_) is an upper-mid-range smartphone from Samsung.
+The Galaxy S21 FE 5G (codenamed _"r9q"_) is an upper-mid-range smartphone from Samsung.
 
-It was announced in August 2021 and released in September 2021.
+It was announced and released in January 2022.
 
-There are also two different variants for Taiwan (a52sxqzt) and Korea (a52sxqks).
+There are also a few more different variant, but all of them are classified as r9q and share almost the same hardware.
 
 ## Device specifications
 
 | Feature                        | Specification                                                                             |
 | -----------------------------: | :---------------------------------------------------------------------------------------- |
-| Chipset                        | Qualcomm SM7325 Snapdragon 778G 5G                                                        |
-| CPU                            | Octa-core (1x2.4 GHz Kryo 670 Prime, 3x2.2 GHz Kryo 670 Gold & 4x1.9 GHz Kryo 670 Silver) |
-| GPU                            | Qualcomm Adreno 642L                                                                      |
+| Chipset                        | Qualcomm SM8350 Snapdragon 888                                                            |
+| CPU                            | Octa-core (1x2.84 GHz Cortex-X1 & 3x2.42 GHz Cortex-A78 & 4x1.80 GHz Cortex-A55)          |
+| GPU                            | Qualcomm Adreno 660                                                                       |
 | Memory                         | 6GB / 8GB RAM (LPDDR4X)                                                                   |
-| Shipped OS                     | Android 11 (One UI 3.1)                                                                   |
+| Shipped OS                     | Android 12 (One UI 4.1)                                                                   |
 | Storage                        | 128GB / 256GB (UFS 2.1)                                                                   |
-| SIM                            | Hybrid Dual SIM (Nano-SIM, dual stand-by)                                                 |
-| MicroSD                        | Up to 1TB                                                                                 |
+| SIM                            | Single SIM (Nano-SIM) or Dual SIM (Nano-SIM, dual stand-by)                               |
 | Battery                        | 4500mAh Li-Ion (non-removable), 25W fast charge                                           |
-| Dimensions                     | 159.9 x 75.1 x 8.4 mm (6.30 x 2.96 x 0.33 in)                                             |
-| Display                        | 6.5", 1080 x 2400 pixels, 20:9 ratio, Super AMOLED, 120Hz (~405 ppi density)              |
-| Rear Camera 1 (IMX682/S5KGW1P) | 64 MP, f/1.8, 26mm (wide), 1/1.7", 0.8µm, PDAF, OIS                                       |
-| Rear Camera 2 (S5K3L6)         | 12 MP, f/2.2, 123˚ (ultrawide), 1.12µm                                                    |
-| Rear Camera 3 (S5KGW2)         | 5 MP, f/2.4, (macro)                                                                      |
-| Rear Camera 4 (S5K3J1)         | 5 MP, f/2.4, (depth)                                                                      |
-| Front Camera (IMX616/S5KGD2)   | 32 MP, f/2.2, 26mm (wide), 1/2.8", 0.8µm                                                  |
-| Fingerprint                    | EgisTec ET713 (under display, optical)                                                    |
+| Dimensions                     | 155.7 x 74.5 x 7.9 mm (6.13 x 2.93 x 0.31 in)                                             |
+| Display                        | 6.4”, 1080 x 2340 pixels, 19.5:9 ratio, Super AMOLED, 120Hz (~403 ppi density)            |
+| Rear Camera 1 (IMX555/S5K2LD)  | 12 MP, f/1.8, 26mm (wide), 1/1.76", 1.8µm, Dual Pixel PDAF, OIS                           |
+| Rear Camera 2 (IMX258/HI1336C) | 12 MP, f/2.2, 13mm, 123˚ (ultrawide), 1/3.0", 1.12µm                                      |
+| Rear Camera 3 (HI847)          | 8 MP, f/2.4, 76mm (telephoto), 1/4.5", 1.0µm, PDAF, OIS, 3x optical zoom                  |
+| Front Camera (IMX616)          | 32 MP, f/2.2, 26mm (wide), 1/2.74", 0.8µm                                                 |
+| Fingerprint                    | Goodix GW9558 (under display, optical)                                                    |
 | Sensors                        | Accelerometer, Gyro, Proximity (virtual), Compass, Hall IC, Grip                          |
-| Extras                         | Dual speakers, NFC, MST                                                                   |
+| Extras                         | Dual speakers, NFC                                                                        |
 
 ## Device picture
 
-<img src="https://user-images.githubusercontent.com/13062958/187953480-5eb44d30-247d-4932-9d59-e2d37563ca19.png" width="45%"/>
+*TODO: Add a picture of Samsung Galaxy S21 FE (r9q)
 
 ## Kernel source 
 
-Available at [https://github.com/BlackMesa123/android_kernel_samsung_sm7325/tree/sep-15/twrp-12.1](https://github.com/BlackMesa123/android_kernel_samsung_sm7325/tree/sep-15/twrp-12.1)
+Available at [https://github.com/glikched/android_kernel_samsung_sm8350/tree/twrp-12.1](glikched/android_kernel_samsung_sm8350)
 
 ## How to build
 
@@ -47,7 +45,7 @@ This device tree was tested and is fully compatible with [minimal-manifest-twrp]
 2. In the root folder of the fetched repo, clone the device tree:
 
 ```bash
-git clone https://github.com/TeamWin/android_device_samsung_a52sxq.git -b android-12.1 device/samsung/a52sxq
+git clone https://github.com/glikched/android_device_samsung_r9q.git -b android-12.1 device/samsung/r9q
 ```
 
 3. To build:
@@ -55,7 +53,7 @@ git clone https://github.com/TeamWin/android_device_samsung_a52sxq.git -b androi
 ```bash
 export ALLOW_MISSING_DEPENDENCIES=true
 . build/envsetup.sh
-lunch twrp_a52sxq-eng
+lunch twrp_r9q-eng
 mka recoveryimage
 ```
 
@@ -63,7 +61,7 @@ mka recoveryimage
 
 ```
 #
-# Copyright (C) 2022 The TWRP Open Source Project
+# Copyright (C) 2024 The TWRP Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

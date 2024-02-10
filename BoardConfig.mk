@@ -1,6 +1,6 @@
 #
-# Copyright (C) 2022 The Android Open Source Project
-# Copyright (C) 2022 The TWRP Open Source Project
+# Copyright (C) 2024 The Android Open Source Project
+# Copyright (C) 2024 The TWRP Open Source Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -54,12 +54,13 @@ BOARD_KERNEL_CMDLINE := \
     loop.max_part=7 \
     iptable_raw.raw_before_defrag=1 \
     ip6table_raw.raw_before_defrag=1 \
-    printk.devkmsg=on
+    printk.devkmsg=on \
+    androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_MKBOOTIMG_ARGS := \
     --dtb $(DEVICE_PATH)/prebuilt/dtb \
-    --board SRPUE26A001 \
+    --board SRPUE26A006 \
     --kernel_offset 0x00008000 \
     --ramdisk_offset 0x02000000 \
     --tags_offset 0x01e00000 \
@@ -71,7 +72,8 @@ BOARD_ROOT_EXTRA_FOLDERS := \
     omr \
     optics \
     prism \
-    spu
+    spu \
+    keyrefuge
 
 # Android Verified Boot
 BOARD_AVB_ENABLE := true
@@ -80,8 +82,8 @@ BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 
-# Samsung TS drivers (a52sxq)
-TW_LOAD_VENDOR_MODULES := "sec_cmd.ko sec_common_fn.ko sec_secure_touch.ko sec_tclm_v2.ko sec_tsp_dumpkey.ko sec_tsp_log.ko stm_ts.ko"
+# Samsung TS drivers (r9q)
+TW_LOAD_VENDOR_MODULES := "sec_cmd.ko sec_common_fn.ko sec_secure_touch.ko sec_tclm_v2.ko sec_tsp_dumpkey.ko sec_tsp_log.ko slsi_ts.ko synaptics_ts.ko"
 TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
 TW_LOAD_VENDOR_BOOT_MODULES := true
 
@@ -92,16 +94,16 @@ TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 100663296
 BOARD_DTBOIMG_PARTITION_SIZE := 25165824
-BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 100663296
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 81788928
+BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 2070212608
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 100663296
 
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Dynamic partitions
-BOARD_SUPER_PARTITION_SIZE := 10643046400
+BOARD_SUPER_PARTITION_SIZE := 11744051200
 BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
-BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 10638852096
+BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 11739856896
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := system odm product vendor
 
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -115,6 +117,11 @@ TARGET_COPY_OUT_VENDOR := vendor
 # Encryption
 BOARD_USES_QCOM_FBE_DECRYPTION := true
 BOARD_USES_METADATA_PARTITION := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+PLATFORM_SECURITY_PATCH := 2099-12-31
+VENDOR_SECURITY_PATCH := 2099-12-31
+PLATFORM_VERSION := 16.1.0
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
@@ -125,6 +132,7 @@ RECOVERY_SDCARD_ON_DATA := true
 TARGET_USES_MKE2FS := true
 
 # TWRP specific build flags
+TW_DEVICE_VERSION := _glikched
 TW_THEME := portrait_hdpi
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
@@ -132,7 +140,7 @@ TW_MAX_BRIGHTNESS := 486
 TW_DEFAULT_BRIGHTNESS := 128
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone50/temp"
 TW_Y_OFFSET := 89
-TW_H_OFFSET := -89
+TW_H_OFFSET := -100
 TW_NO_REBOOT_BOOTLOADER := true
 TW_HAS_DOWNLOAD_MODE := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
@@ -145,3 +153,7 @@ TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_LPDUMP := true
 TW_INCLUDE_LPTOOLS := true
 TW_FRAMERATE := 120
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+TW_NO_SCREEN_BLANK := true
+
