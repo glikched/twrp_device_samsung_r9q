@@ -132,11 +132,11 @@ jobs:
         echo "Outdir=${GITHUB_WORKSPACE}/workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}" >> $GITHUB_OUTPUT
       id: var
 
-    - name: Add Img to Zip
+    - name: Add Img to tar
       run: |
         cd ${{ steps.var.outputs.Outdir }}
         tar -cvf twrp-${{ github.event.inputs.DEVICE_NAME }}-${{ steps.var.outputs.date }}.tar ${{ github.event.inputs.DEVICE_TYPE }}.img
-        echo "name=$(find * -name *.zip -type f)" >> $GITHUB_OUTPUT
+        echo "name=$(find * -name *.tar -type f)" >> $GITHUB_OUTPUT
       id: zipname
 
     - name: Publish to GitHub
