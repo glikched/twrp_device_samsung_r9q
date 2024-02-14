@@ -750,6 +750,7 @@
     </hal>
     <sepolicy>
         <version>30.0</version>
+        <version>31</version>
     </sepolicy>
     <kernel target-level="5"/>
 </manifest>

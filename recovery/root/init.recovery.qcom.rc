@@ -29,6 +29,7 @@ import /init.recovery.qcom_decrypt.rc
 
 on early-init
     start linkblobs
+    start keymaster-sb-4-0
 
 on init
     setprop prepdecrypt.setpatch true
@@ -43,6 +44,12 @@ on fs
 
 on boot
     start health-hal-2-1
+
+on property:crypto.ready=0
+    stop keymaster-sb-4-0
+
+on property:twrp.user.0.decrypt=0
+    umount /vendor/firmware_mnt
 
 service linkblobs /system/bin/linkblobs.sh
     user root

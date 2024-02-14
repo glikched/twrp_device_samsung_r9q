@@ -20,6 +20,9 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := $(TARGET_CPU_VARIANT)
 TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a75
 
+# Manifest
+PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
+
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := $(PRODUCT_PLATFORM)
 TARGET_NO_BOOTLOADER := true
@@ -132,7 +135,7 @@ RECOVERY_SDCARD_ON_DATA := true
 TARGET_USES_MKE2FS := true
 
 # TWRP specific build flags
-TW_DEVICE_VERSION := _glikched
+TW_DEVICE_VERSION := 0_glikched
 TW_THEME := portrait_hdpi
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"

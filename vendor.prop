@@ -1,4 +1,5 @@
 # Crypto
+ro.crypto.allow_encrypt_override=true
 ro.crypto.metadata_init_delete_all_keys.enabled=false
 ro.crypto.dm_default_key.options_format.version=2
 ro.crypto.volume.metadata.method=dm-default-key
