@@ -39,7 +39,7 @@ PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,device/samsung/r9q/recover
 ## Device identifier. This must come after all inclusions
 PRODUCT_NAME := twrp_r9q
 PRODUCT_DEVICE := r9q
-PRODUCT_MODEL := SM-G990U
+PRODUCT_MODEL := SM-G990X
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
