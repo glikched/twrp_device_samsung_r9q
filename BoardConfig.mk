@@ -55,7 +55,7 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno660
 QCOM_BOARD_PLATFORMS += lahaina
 
 # Kernel
-TARGET_PREBUILT_KERNEL := device/samsung/r9q/prebuilt/Image.gz
+TARGET_PREBUILT_KERNEL := device/samsung/r9q/prebuilt/Image
 TARGET_PREBUILT_DTB := device/samsung/r9q/prebuilt/dtb
 BOARD_PREBUILT_DTBOIMAGE := device/samsung/r9q/prebuilt/recovery_dtbo
 #BOARD_INCLUDE_DTB_IN_BOOTIMG := true
