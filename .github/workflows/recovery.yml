@@ -50,7 +50,7 @@ on:
         - no
 
 jobs:
-  build:
+  build-TWRP:
     if: github.event.repository.owner.id == github.event.sender.id
     runs-on: ubuntu-latest
     permissions:
@@ -132,22 +132,22 @@ jobs:
         echo "Outdir=${GITHUB_WORKSPACE}/workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}" >> $GITHUB_OUTPUT
       id: var
 
-    - name: Add Img to Zip
+    - name: Add Img to Tar for Odin
       run: |
         cd ${{ steps.var.outputs.Outdir }}
         tar -cvf twrp-${{ github.event.inputs.DEVICE_NAME }}-${{ steps.var.outputs.date }}.tar ${{ github.event.inputs.DEVICE_TYPE }}.img
-        echo "name=$(find * -name *.zip -type f)" >> $GITHUB_OUTPUT
-      id: zipname
+        echo "name=$(find * -name *.tar -type f)" >> $GITHUB_OUTPUT
+      id: tarname
 
     - name: Publish to GitHub
       if: github.event.inputs.PUBLISH == 'true'
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          ${{ steps.var.outputs.Outdir }}/${{ steps.zipname.outputs.name }}
+          ${{ steps.var.outputs.Outdir }}/${{ steps.tarname.outputs.name }}
           ${{ steps.var.outputs.Outdir }}/${{ github.event.inputs.DEVICE_TYPE }}.img
         name: ${{ steps.zipname.outputs.name }}-${{ github.run_id }}
-        tag_name: ${{ github.run_id }}
+        tag_name: TWRP_${{ github.event.inputs.DEVICE_NAME }} ${{ github.run_id }}
         body: |
           Manifest: ${{ github.event.inputs.LIBRARY_BRANCH }}
           Device: ${{ github.event.inputs.DEVICE_NAME }}
