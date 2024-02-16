@@ -146,8 +146,8 @@ jobs:
         files: |
           ${{ steps.var.outputs.Outdir }}/${{ steps.tarname.outputs.name }}
           ${{ steps.var.outputs.Outdir }}/${{ github.event.inputs.DEVICE_TYPE }}.img
-        name: ${{ steps.zipname.outputs.name }}-${{ github.run_id }}
-        tag_name: TWRP_${{ github.event.inputs.DEVICE_NAME }} ${{ github.run_id }}
+        name: TWRP_${{ github.event.inputs.DEVICE_NAME }} -${{ github.run_id }}
+        tag_name: ${{ github.run_id }}
         body: |
           Manifest: ${{ github.event.inputs.LIBRARY_BRANCH }}
           Device: ${{ github.event.inputs.DEVICE_NAME }}
